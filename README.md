@@ -55,28 +55,7 @@ link to a folder for frontend content.
 * Contact Us
   * `http post 0.0.0.0/api/contact_us email=from@example.com message=message-to-send`
 
-### AWS S3
-Sample minimum Bucket policy
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "s3:PutObject",
-                "s3:GetObjectAcl",
-                "s3:GetObject",
-                "s3:CreateBucket",
-                "s3:PutObjectAcl"
-            ],
-            "Resource": [
-                "arn:aws:s3:::<bucketname>/*",
-                "arn:aws:s3:::<bucketname>"
-            ]
-        }
-    ]
-}
+
 
 
 
