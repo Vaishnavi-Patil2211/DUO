@@ -3,7 +3,8 @@ services:
   nginx:
     ports:
       - "3000:80"
-  node-app:
+    restart: always
+  duo:
     build:
       context: .
       args:
@@ -11,14 +12,18 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    environment:
-      - NODE_ENV=development
-      - MONGO_USER=sanjeev
-      - MONGO_PASSWORD=mypassword
-      - SESSION_SECRET=secret
+    # environment:
+    #   - NODE_ENV=development
+    #   - MONGO_USER=vaishnavi
+    #   - MONGO_PASSWORD=mypassword
+    #   - SESSION_SECRET=secret
+    env_file:
+      - .env
 
     command: npm run dev
   mongo:
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=sanjeev
-      - MONGO_INITDB_ROOT_PASSWORD=mypassword
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=shubham
+    #   - MONGO_INITDB_ROOT_PASSWORD=mypassword
+    env_file:
+      - .env
