@@ -10,13 +10,13 @@ const {
   MONGO_PASSWORD,
   MONGO_IP,
   MONGO_PORT,
-  REDIS_URL,
+  REDIS_IP,
   SESSION_SECRET,
   REDIS_PORT,
 } = require("./config/config");
 
 let redisClient = redis.createClient({
-  host: REDIS_URL,
+  host: REDIS_IP,
   port: REDIS_PORT,
 });
 
@@ -26,6 +26,8 @@ const userRouter = require("./routes/userRoutes");
 const app = express();
 
 const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
+// const  mongoURL = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.DB_URL}`
+
 
 const connectWithRetry = () => {
   mongoose
@@ -62,9 +64,10 @@ app.use(
 app.use(express.json());
 
 app.get("/api/v1", (req, res) => {
-  res.send("<h2>Hi  There</h2>");
+  res.send("<h2>duo server</h2>");
   console.log("yeah it ran");
 });
+
 
 //localhost:3000/api/v1/post/
 app.use("/api/v1/posts", postRouter);
