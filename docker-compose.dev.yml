@@ -23,7 +23,7 @@ services:
     command: npm run dev
   mongo:
     # environment:
-    #   - MONGO_INITDB_ROOT_USERNAME=shubham
+    #   - MONGO_INITDB_ROOT_USERNAME=vaishnavi
     #   - MONGO_INITDB_ROOT_PASSWORD=mypassword
     env_file:
       - .env
