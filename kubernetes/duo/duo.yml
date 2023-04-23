@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: duo
-        image: vaishnavi2211/duo:latest
-        imagePullPolicy: Never
+        image: vaishnavi2002/duo:v1
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
         env:
