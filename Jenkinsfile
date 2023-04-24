@@ -32,10 +32,7 @@ pipeline {
         stage('Run docker container with compose'){
             steps{
                 script{
-                    
-                    sh 'kubectl delete -f kubernetes/duo/duo.yml'
-                    sh 'kubectl delete -f kubernetes/mongodb/mongo.yml'
-                    sh 'kubectl delete -f kubernetes/redis/redis.yml'
+                    sh 'make deploy'
                 }
             }
         }
