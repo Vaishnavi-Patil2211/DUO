@@ -7,13 +7,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/shubham-yadavv/ContainerFlow']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Vaishnavi-Patil2211/DUO']]])
             }
         }
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t shubham22121/containerflow:v1 .'
+                    sh 'docker build -t vaishnavi2002/duo:v1 .'
                 }
             }
         }
@@ -21,9 +21,9 @@ pipeline {
             steps{
                 script{
                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                    sh 'docker login -u shubham22121 -p ${dockerhubpwd}'
+                    sh 'docker login -u vaishnavi2002 -p ${dockerhubpwd}'
                 }
-                   sh 'docker push shubham22121/containerflow:v1'
+                   sh 'docker push vaishnavi2002/duo:v1'
                 }
             }
         }
@@ -33,6 +33,9 @@ pipeline {
             steps{
                 script{
                     sh 'make deploy'
+                    sh 'kubectl delete -f kubernetes/duo/duo.yml'
+                    sh 'kubectl delete -f kubernetes/mongodb/mongo.yml'
+                    sh 'kubectl delete -f kubernetes/redis/redis.yml'
                 }
             }
         }
